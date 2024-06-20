@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/06/20 12:40:57 by rbutzke           #+#    #+#              #
-#    Updated: 2024/06/20 17:23:22 by rbutzke          ###   ########.fr        #
+#    Created: 2024/06/20 13:07:30 by rbutzke           #+#    #+#              #
+#    Updated: 2024/06/20 15:43:33 by rbutzke          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,16 +25,16 @@ CMD_CLEAN           := rm -Rf
 INCLUDES            := -I ../../includes
 
 # Source files
-FILE                := init.c add.back.c
+FILE                := valid.c
 NUM_FILES           := $(words $(FILE))
 
 # Directory for object files
-OBJS                := ./objs
+OBJS                := objs
 O_FILE              := $(FILE:%.c=$(OBJS)/%.o)
 DEP_FILES           := $(O_FILES:%.o=.d)
 
 # Default rule to create the static library
-all : $(NAME)
+all: $(NAME)
 
 # Rule to create the static library
 $(NAME): $(O_FILE)
@@ -46,7 +46,7 @@ $(OBJS)/%.o: %.c
 	@mkdir -p $(OBJS)
 	@$(CC) $(INCLUDES) $(O_FLAGS) $(CFLAGS) $< -o $@
 	@$(eval COUNT := $(shell echo $$(($(COUNT)+1))))
-	@printf "Creating binaries from list functions  [%s]\r" $(shell echo "$$(($(COUNT) * 100 / $(NUM_FILES)))%")
+	@printf "Creating binaries from valid functions [%s]\r" $(shell echo "$$(($(COUNT) * 100 / $(NUM_FILES)))%")
 
 # Include dependency files
 -include $(DEP_FILES)

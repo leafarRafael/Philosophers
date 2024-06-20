@@ -6,74 +6,73 @@
 #    By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 08:00:03 by rbutzke           #+#    #+#              #
-#    Updated: 2024/06/20 14:11:18 by rbutzke          ###   ########.fr        #
+#    Updated: 2024/06/20 18:00:55 by rbutzke          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
+#-----------------------------------------------------------------------------------------	
 # Program name
 NAME                := philo
 
+#-----------------------------------------------------------------------------------------	
 # Path to the static library
 BINARY              := ./src/philo.a
 
+#-----------------------------------------------------------------------------------------
 # Compiler and flags
 CC                  := cc
 CFLAGS              := -Wall -Werror -Wextra -g3
 OFLAGS              := -c
 
-#clean flag
+#-----------------------------------------------------------------------------------------	
+# clean comand and flag
 CLEAN_CMD				:= rm -Rf
 
+#-----------------------------------------------------------------------------------------	
 # Paths to the subdirectories containing source files
 LIST_PATH           := src/list
 MAIN_PATH           := src/main
+VALID_PATH          := src/valid_arg
+LIB_PATH			:= src/lib
 
+#-----------------------------------------------------------------------------------------	
 # Default rule to create the executable
 all: $(NAME)
 
-$(NAME): list main
-
+#-----------------------------------------------------------------------------------------	
 # Rule to link the static library and create the executable
 $(NAME):
 	@$(CC) $(BINARY) -o $(NAME)
 	@printf "\nExecutable %s created successfully\n" $(NAME)
 
+#-----------------------------------------------------------------------------------------	
 # Rule to create the static library by compiling source files in subdirectories
-$(BINARY): list main
+$(NAME): object
 
-# Rule to compile source files in the 'list' subdirectory
-list: 
+#-----------------------------------------------------------------------------------------	
+# Rule ti create object
+object:
+	@$(MAKE) -C $(VALID_PATH) --no-print-directory
 	@$(MAKE) -C $(LIST_PATH) --no-print-directory
-
-# Rule to compile source files in the 'main' subdirectory
-main: 
 	@$(MAKE) -C $(MAIN_PATH) --no-print-directory
+	@$(MAKE) -C $(LIB_PATH) --no-print-directory
 
-# Rule to clean up object files in the 'main' subdirectory
-main_clean: 
+#-----------------------------------------------------------------------------------------	
+# Rule to clean up object files
+files_object: 
+	@$(MAKE) -C $(VALID_PATH) clean --no-print-directory
 	@$(MAKE) -C $(MAIN_PATH) clean --no-print-directory
-
-# Rule to clean up object files and the static library in the 'main' subdirectory
-main_fclean: 
-	@$(MAKE) -C $(MAIN_PATH) fclean --no-print-directory
-
-# Rule to clean up object files in the 'list' subdirectory
-list_clean: 
 	@$(MAKE) -C $(LIST_PATH) clean --no-print-directory
+	@$(MAKE) -C $(LIB_PATH) clean --no-print-directory
 
-# Rule to clean up object files and the static library in the 'list' subdirectory
-list_fclean: 
-	@$(MAKE) -C $(LIST_PATH) fclean --no-print-directory
-
-# Rule to clean up object files in all subdirectories
-clean: main_clean list_clean
+#-----------------------------------------------------------------------------------------
+# Rule to clean
+clean: files_object
 	$(CLEAN_CMD) $(BINARY)
 	
-# Rule to clean up object files and the static library in all subdirectories
-fclean: list_fclean main_fclean
+fclean: clean
 	$(CLEAN_CMD) $(NAME)
-
-# Rule to recompile everything
+	
 re: fclean all
 
 .PHONY: all list main main_clean main_fclean list_clean list_fclean clean fclean re

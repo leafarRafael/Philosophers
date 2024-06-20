@@ -6,10 +6,9 @@
 /*   By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:29:31 by rbutzke           #+#    #+#             */
-/*   Updated: 2024/06/20 11:43:13 by rbutzke          ###   ########.fr       */
+/*   Updated: 2024/06/20 14:39:57 by rbutzke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef LIST_H
  #define LIST_H
@@ -50,5 +49,7 @@ typedef struct s_lst
 }		t_lst;
 
 void	init_lst(t_lst	*lst);
+t_no	*init_node(void *content);
+int		add_back(t_lst *lst, void *content);
 
 #endif

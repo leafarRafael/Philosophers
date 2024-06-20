@@ -6,7 +6,7 @@
 #    By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 13:07:30 by rbutzke           #+#    #+#              #
-#    Updated: 2024/06/20 13:58:24 by rbutzke          ###   ########.fr        #
+#    Updated: 2024/06/20 17:23:15 by rbutzke          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ $(OBJS)/%.o: %.c
 	@mkdir -p $(OBJS)
 	@$(CC) $(INCLUDES) $(O_FLAGS) $(CFLAGS) $< -o $@
 	@$(eval COUNT := $(shell echo $$(($(COUNT)+1))))
-	@printf "Creating binaries from main functions [%s]\r" $(shell echo "$$(($(COUNT) * 100 / $(NUM_FILES)))%")
+	@printf "Creating binaries from main functions  [%s]\r" $(shell echo "$$(($(COUNT) * 100 / $(NUM_FILES)))%")
 
 # Include dependency files
 -include $(DEP_FILES)
