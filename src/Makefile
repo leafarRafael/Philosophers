@@ -6,60 +6,55 @@
 #    By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 13:07:30 by rbutzke           #+#    #+#              #
-#    Updated: 2024/06/20 15:43:33 by rbutzke          ###   ########.fr        #
+#    Updated: 2024/06/22 09:46:18 by rbutzke          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Static library
-NAME                := ../philo.a
+NAME                := philo.a
 
 # Compiler and flags
 CC                  := cc
-CFLAGS              := -Wall -Werror -Wextra -g3 -MMD -MP
+CFLAGS              := -Wall -Werror -Wextra -g3
 O_FLAGS             := -c
 
-# Command to clean up files
-CMD_CLEAN           := rm -Rf
+# Header file includes and directory
+INCLUDES            := -I ../includes
+DIR_LIB             := lib/
+DIR_LIST            := list/
+DIR_MAIN            := main/
+DIR_VALID           := valid_arg/
 
-# Header file includes
-INCLUDES            := -I ../../includes
+# Sources
+LIB                 := atoi.c
+LIST                := add_back.c init.c
+MAIN                := main.c
+VALID               := valid.c
 
-# Source files
-FILE                := valid.c
-NUM_FILES           := $(words $(FILE))
+# All sources
+SRC_FILES           := $(addprefix $(DIR_LIB), $(LIB)) \
+                       $(addprefix $(DIR_LIST), $(LIST)) \
+                       $(addprefix $(DIR_MAIN), $(MAIN)) \
+                       $(addprefix $(DIR_VALID), $(VALID))
+
+NUM_FILES           := $(words $(SRC_FILES))
 
 # Directory for object files
 OBJS                := objs
-O_FILE              := $(FILE:%.c=$(OBJS)/%.o)
-DEP_FILES           := $(O_FILES:%.o=.d)
+O_FILES             := $(SRC_FILES:%.c=$(OBJS)/%.o)
 
 # Default rule to create the static library
 all: $(NAME)
 
 # Rule to create the static library
-$(NAME): $(O_FILE)
-	@ar -rc $(NAME) $(O_FILE)
-	@echo ""
+$(NAME): $(O_FILES)
+	@ar -rc $(NAME) $(O_FILES)
 
 # Rule to compile source files into object files
 $(OBJS)/%.o: %.c
-	@mkdir -p $(OBJS)
+	@mkdir -p $(dir $@)
 	@$(CC) $(INCLUDES) $(O_FLAGS) $(CFLAGS) $< -o $@
 	@$(eval COUNT := $(shell echo $$(($(COUNT)+1))))
-	@printf "Creating binaries from valid functions [%s]\r" $(shell echo "$$(($(COUNT) * 100 / $(NUM_FILES)))%")
+	@printf "Creating binaries from source files [%s]\r" $(shell echo "$$(($(COUNT) * 100 / $(NUM_FILES)))%")
+	@sleep 0.3
 
-# Include dependency files
--include $(DEP_FILES)
-
-# Rule to clean up object files
-clean:
-	@$(CMD_CLEAN) $(OBJS)
-
-# Rule to clean up object files and the static library
-fclean: clean
-	@$(CMD_CLEAN) $(NAME)
-
-# Rule to recompile everything
-re: fclean all
-
-.PHONY: all clean fclean re

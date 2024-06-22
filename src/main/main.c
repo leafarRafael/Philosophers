@@ -6,11 +6,11 @@
 /*   By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 08:32:15 by rbutzke           #+#    #+#             */
-/*   Updated: 2024/06/20 18:02:06 by rbutzke          ###   ########.fr       */
+/*   Updated: 2024/06/22 09:16:57 by rbutzke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+# include "philo.h"
 
 static int	ft_setarg(unsigned int	type[6], int argc, char *argv[]);
 

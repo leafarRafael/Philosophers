@@ -6,7 +6,7 @@
 /*   By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:29:31 by rbutzke           #+#    #+#             */
-/*   Updated: 2024/06/20 14:39:57 by rbutzke          ###   ########.fr       */
+/*   Updated: 2024/06/22 08:21:45 by rbutzke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
  #include <stdlib.h>
  #include <stdio.h>
  #include <pthread.h>
+ #include <limits.h>
 
 typedef	struct	s_philo
 {

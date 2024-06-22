@@ -6,7 +6,7 @@
 /*   By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 17:12:32 by rbutzke           #+#    #+#             */
-/*   Updated: 2024/06/20 17:28:20 by rbutzke          ###   ########.fr       */
+/*   Updated: 2024/06/22 09:20:53 by rbutzke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static int	ft_isdigit(int c);
 
 unsigned int	ft_atoi(const char *nptr)
 {
-	unsigned int	i;
-	unsigned int	nbr;
-	unsigned int	is_negative;
+	int	i;
+	int	nbr;
+	int	is_negative;
 
 	is_negative = 0;
 	nbr = 0;
