@@ -6,11 +6,12 @@
 /*   By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 15:22:12 by rbutzke           #+#    #+#             */
-/*   Updated: 2024/06/20 15:52:40 by rbutzke          ###   ########.fr       */
+/*   Updated: 2024/06/22 12:39:20 by rbutzke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include <stdio.h>
 
 static int	is_nbr(char c);
 static int	put_msg();

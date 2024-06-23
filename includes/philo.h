@@ -6,15 +6,12 @@
 /*   By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 08:31:14 by rbutzke           #+#    #+#             */
-/*   Updated: 2024/06/20 18:01:42 by rbutzke          ###   ########.fr       */
+/*   Updated: 2024/06/22 12:57:02 by rbutzke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
  #define PHILO_H
-
-# include "list.h"
-# include <unistd.h>
 
 #define ARG1 "number of philosophers;"
 #define ARG2 "time to die;"
@@ -22,16 +19,16 @@
 #define ARG4 "time to sleep;"
 #define ARG5 "number of times each philosopher must eat"
 
-typedef	enum e_param
+typedef struct	s_data
 {
-	NBR_PHILO = 1,
-	TIME_DIE,
-	TIME_EAT,
-	TIME_SLEEP,
-	NBR_EAT,
-}		t_param;
+	int				nbr_filo;
+	unsigned int	time_die;
+	unsigned int	time_eat;
+	unsigned int	time_sleep;
+	unsigned int	nbr_eat;
+}			t_data;
 
-int				valid_arguments(int argc, char *argv[]);
-unsigned int	ft_atoi(const char *nptr);
+int	ft_setarg(t_data	*input, int argc, char *argv[]);
+int	valid_arguments(int argc, char *argv[]);
 
 #endif

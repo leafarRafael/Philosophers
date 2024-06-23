@@ -6,51 +6,42 @@
 /*   By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 11:29:31 by rbutzke           #+#    #+#             */
-/*   Updated: 2024/06/22 08:21:45 by rbutzke          ###   ########.fr       */
+/*   Updated: 2024/06/22 12:59:19 by rbutzke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIST_H
  #define LIST_H
 
- #include <stdlib.h>
- #include <stdio.h>
- #include <pthread.h>
- #include <limits.h>
+#include "list.h"
+# include <pthread.h>
 
-typedef	struct	s_philo
+typedef struct	s_philo
 {
-	pthread_t	*phi;
-
-}			t_philo;
-
-typedef	struct	s_fork
-{
-	pthread_t	*hashi;
-}			t_fork;
-
-typedef union	u_type
-{
-	t_fork	*hashi;
-	t_philo	*philos;
-}		t_type;
+	unsigned int	time_die;
+	unsigned int	time_eat;
+	unsigned int	time_sleep;
+	unsigned int	nbr_eat;
+}			t_phi;
 
 typedef struct s_no
 {
-	union t_type	*un;
+	t_phi			phi;
+	pthread_mutex_t	forks;
 	struct s_no		*next;
 	struct s_no		*prev;
 }		t_no;
 
 typedef struct s_lst
 {
+	t_no	node[200];
 	t_no	*head;
 	t_no	*last;
 	int		size;
 }		t_lst;
 
-void	init_lst(t_lst	*lst);
-t_no	*init_node(void *content);
-int		add_back(t_lst *lst, void *content);
+void	init_lst(t_lst *lst);
+void	init_node(t_phi *cnt, t_no *node);
+int		add_back(t_lst *lst, t_phi *content);
 
 #endif

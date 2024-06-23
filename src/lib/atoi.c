@@ -6,11 +6,11 @@
 /*   By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 17:12:32 by rbutzke           #+#    #+#             */
-/*   Updated: 2024/06/22 09:20:53 by rbutzke          ###   ########.fr       */
+/*   Updated: 2024/06/22 11:53:16 by rbutzke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "lib.h"
 
 static int	ft_is_space(const char c);
 static int	ft_isdigit(int c);

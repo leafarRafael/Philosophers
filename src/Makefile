@@ -6,7 +6,7 @@
 #    By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 13:07:30 by rbutzke           #+#    #+#              #
-#    Updated: 2024/06/22 09:46:18 by rbutzke          ###   ########.fr        #
+#    Updated: 2024/06/22 12:49:38 by rbutzke          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ DIR_VALID           := valid_arg/
 # Sources
 LIB                 := atoi.c
 LIST                := add_back.c init.c
-MAIN                := main.c
+MAIN                := main.c set_arguments.c
 VALID               := valid.c
 
 # All sources

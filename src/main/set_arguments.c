@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init.c                                             :+:      :+:    :+:   */
+/*   set_arguments.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/20 11:33:13 by rbutzke           #+#    #+#             */
-/*   Updated: 2024/06/22 12:46:19 by rbutzke          ###   ########.fr       */
+/*   Created: 2024/06/22 12:48:09 by rbutzke           #+#    #+#             */
+/*   Updated: 2024/06/22 12:57:02 by rbutzke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "list.h"
-#include "philo.h"
-#include <stdlib.h>
+# include "philo.h"
+# include "lib.h"
 
-void	init_lst(t_lst	*lst)
+int	ft_setarg(t_data	*input, int argc, char *argv[])
 {
-	lst->head = NULL;
-	lst->last = NULL;
-	lst->size = 0;
-}
-
-void	init_node(t_phi *cnt, t_no *node)
-{
-	node->next = node;
-	node->prev = node;
-	node->phi = *cnt;
-	pthread_mutex_init(&node->forks, NULL);
+	input->nbr_filo= ft_atoi(argv[1]);
+	input->time_die = ft_atoi(argv[2]);
+	input->time_eat = ft_atoi(argv[3]);
+	input->time_sleep = ft_atoi(argv[4]);
+	input->nbr_eat = -1;
+	if (argc == 6)
+		input->nbr_eat = ft_atoi(argv[5]);
+	return(0);
 }
