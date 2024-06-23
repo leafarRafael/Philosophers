@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+         #
+#    By: rbutzke <rbutzke@student.42so.org.br>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/06/20 08:00:03 by rbutzke           #+#    #+#              #
-#    Updated: 2024/06/22 09:38:35 by rbutzke          ###   ########.fr        #
+#    Updated: 2024/06/23 15:11:26 by rbutzke          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,8 +30,11 @@ CLEAN_CMD				:= rm -Rf
 
 #-----------------------------------------------------------------------------------------	
 # Paths to the subdirectories containing source files
-SOURCES				:= src
-OBJECT				:= src/objs
+LIST_PATH           := src/list
+MAIN_PATH           := src/main
+VALID_PATH          := src/valid_arg
+LIB_PATH			:= src/lib
+DEBUG_PATH			:= src/debug
 
 #-----------------------------------------------------------------------------------------	
 # Default rule to create the executable
@@ -40,26 +43,39 @@ all: $(NAME)
 #-----------------------------------------------------------------------------------------	
 # Rule to link the static library and create the executable
 $(NAME):
-	@$(CC) $(BINARY) -o $(NAME)
+	@$(CC) $(BINARY) -o $(NAME) -pthread
 	@printf "\nExecutable %s created successfully\n" $(NAME)
 
 #-----------------------------------------------------------------------------------------	
 # Rule to create the static library by compiling source files in subdirectories
-$(NAME): sources
+$(NAME): object
 
 #-----------------------------------------------------------------------------------------	
-# Rule to create object files
-sources:
-	@$(MAKE) -C $(SOURCES) --no-print-directory
+# Rule ti create object
+object:
+	@$(MAKE) -C $(VALID_PATH) --no-print-directory
+	@$(MAKE) -C $(LIST_PATH) --no-print-directory
+	@$(MAKE) -C $(LIB_PATH) --no-print-directory
+	@$(MAKE) -C $(DEBUG_PATH) --no-print-directory
+	@$(MAKE) -C $(MAIN_PATH) --no-print-directory
+
+#-----------------------------------------------------------------------------------------	
+# Rule to clean up object files
+files_object:
+	@$(MAKE) -C $(VALID_PATH) clean --no-print-directory
+	@$(MAKE) -C $(LIST_PATH) clean --no-print-directory
+	@$(MAKE) -C $(LIB_PATH) clean --no-print-directory
+	@$(MAKE) -C $(DEBUG_PATH) clean --no-print-directory
+	@$(MAKE) -C $(MAIN_PATH) clean --no-print-directory
 
 #-----------------------------------------------------------------------------------------
 # Rule to clean
-clean:
-	@$(CLEAN_CMD) $(BINARY) $(OBJECT)
-	
+clean: files_object
+	$(CLEAN_CMD) $(BINARY)
+
 fclean: clean
-	@$(CLEAN_CMD) $(NAME)
-	
+	$(CLEAN_CMD) $(NAME)
+
 re: fclean all
 
 .PHONY: all list main main_clean main_fclean list_clean list_fclean clean fclean re

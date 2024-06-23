@@ -3,76 +3,44 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: rbutzke <rbutzke@student.42so.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 08:32:15 by rbutzke           #+#    #+#             */
-/*   Updated: 2024/06/22 13:07:55 by rbutzke          ###   ########.fr       */
+/*   Updated: 2024/06/23 15:21:46 by rbutzke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+#include "valid.h"
 #include "lib.h"
 #include "list.h"
+#include "init_thread.h"
+#include <sys/time.h>
 #include <stdio.h>
-
-void	set_pthread(t_phi *phi, t_data *input);
-void	init_list_thread(t_phi *phi, t_data *input, t_lst *lst);
-void	put_pthread(t_lst *lst);
+#include <unistd.h>
+#include <sys/types.h>
+#include "debug.h"
 
 int	main(int argc, char *argv[])
 {
-	t_data	input;
-	t_lst	lst;
-	t_phi	phi;
+	t_data			input;
+	t_lst			lst;
+	t_phi			phi;
 
-	init_lst(&lst);
 	if (valid_arguments(argc, argv))
 		return (1);
 	if (ft_setarg(&input, argc, argv))
 		return (1);
+	init_lst(&lst);
 	init_list_thread(&phi, &input, &lst);
-	put_pthread(&lst);
+	ft_putphilo(&lst);
 	return (0);
 }
 
-
-void	init_list_thread(t_phi *phi, t_data *input, t_lst *lst)
+unsigned int get_time(void)
 {
-	int	i;
+	struct timeval	tv;
 
-	i = 0;
-	set_pthread(phi, input);
-	while (i < input->nbr_filo)
-	{	
-		add_back(lst, phi);
-		i++;
-	}
-}
-
-void	set_pthread(t_phi *phi, t_data *input)
-{
-	phi->time_die = input->time_die;
-	phi->time_eat = input->time_eat;
-	phi->time_sleep = input->time_sleep;
-	phi->nbr_eat = input->nbr_eat;
-}
-
-void	put_pthread(t_lst *lst)
-{
-	int	i;
-	t_no *no;
-
-	i = 1;
-	no = lst->head;
-	while (i <= lst->size)
-	{
-		printf("pthread %d\n", i);
-		printf("%d\n", no->phi.nbr_eat);
-		printf("%d\n", no->phi.time_die);
-		printf("%d\n", no->phi.time_eat);
-		printf("%d\n", no->phi.time_sleep);
-		no = no->next;
-		i++;
-	}
-	
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rbutzke <rbutzke@student.42sp.org.br>      +#+  +:+       +#+        */
+/*   By: rbutzke <rbutzke@student.42so.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/20 08:31:14 by rbutzke           #+#    #+#             */
-/*   Updated: 2024/06/22 12:57:02 by rbutzke          ###   ########.fr       */
+/*   Updated: 2024/06/23 15:07:49 by rbutzke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,11 @@ typedef struct	s_data
 	unsigned int	time_eat;
 	unsigned int	time_sleep;
 	unsigned int	nbr_eat;
+	unsigned int	start;
 }			t_data;
 
 int	ft_setarg(t_data	*input, int argc, char *argv[]);
-int	valid_arguments(int argc, char *argv[]);
+unsigned int	get_time(void);
+
 
 #endif

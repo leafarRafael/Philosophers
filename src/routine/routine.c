@@ -1,27 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   set_arguments.c                                    :+:      :+:    :+:   */
+/*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rbutzke <rbutzke@student.42so.org.br>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/22 12:48:09 by rbutzke           #+#    #+#             */
-/*   Updated: 2024/06/23 14:56:45 by rbutzke          ###   ########.fr       */
+/*   Created: 2024/06/23 11:22:28 by rbutzke           #+#    #+#             */
+/*   Updated: 2024/06/23 15:33:12 by rbutzke          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "philo.h"
-# include "lib.h"
+#include "list.h"
+#include <unistd.h>
+#include <sys/types.h>
 
-int	ft_setarg(t_data *input, int argc, char *argv[])
+void	*routine(void *ptr)
 {
-	input->nbr_filo = ft_atoi(argv[1]);
-	input->time_die = (ft_atoi(argv[2]) * 1000);
-	input->time_eat = (ft_atoi(argv[3]) * 1000);
-	input->time_sleep = (ft_atoi(argv[4]) * 1000);
-	input->nbr_eat = -1;
-	if (argc == 6)
-		input->nbr_eat = ft_atoi(argv[5]);
-	input->start = get_time();
-	return(0);
+	t_no	*no;
+
+	no = (t_no*) ptr;
+	eat(no->phi.time_eat);
+	slep(no->phi.time_sleep);
+	die(no->phi.time_die);
 }
+
+void	sleep(unsigned int t_sleep)
+{
+	usleep(t_sleep);
+}
+
+void	eat(unsigned int t_sleep)
+{
+	
+}
+void	die();
+
