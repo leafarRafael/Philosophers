@@ -34,20 +34,6 @@ Exemplo:
 
 Este comando inicia a simulação com 5 filósofos, onde cada um tem 800ms para morrer sem comer, 200ms para comer e 200ms para dormir.
 
-🧪 Testes e Visualização
-
-Para visualizar a simulação de forma gráfica, você pode utilizar ferramentas como:
-
-Philosophers Visualizer
-
-Philosophers Visualizer v2
-
-Essas ferramentas permitem acompanhar em tempo real as ações dos filósofos (comendo, pensando, dormindo) de maneira interativa.
-
-📄 Licença
-
-Este projeto está sob a licença MIT. Consulte o arquivo LICENSE para mais informações.
-
 
 ========================================================================================================================================================================================
 
@@ -84,22 +70,3 @@ Example:
 ./philosophers 5 800 200 200
 
 This starts the simulation with 5 philosophers, each with 800ms to die without eating, 200ms to eat, and 200ms to sleep.
-
-🧪 Testing and Visualization
-
-To visualize the simulation graphically, you can use tools like:
-
-Philosophers Visualizer
-
-Philosophers Visualizer v2
-
-These tools allow you to monitor the philosophers' actions (eating, thinking, sleeping) in real time interactively.
-
-📄 License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
-
-👤 Author
-
-Rafael
-
