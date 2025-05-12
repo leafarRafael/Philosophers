@@ -1,5 +1,3 @@
-README - Philosophers (Português)
-
 Philosophers
 
 Implementação do problema dos filósofos comensais em C, utilizando semáforos para gerenciar a concorrência entre processos.
