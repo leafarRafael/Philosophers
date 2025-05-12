@@ -48,11 +48,8 @@ Essas ferramentas permitem acompanhar em tempo real as ações dos filósofos (c
 
 Este projeto está sob a licença MIT. Consulte o arquivo LICENSE para mais informações.
 
-👤 Autor
 
-Rafael
-
-README - Philosophers (English)
+========================================================================================================================================================================================
 
 Philosophers
 
