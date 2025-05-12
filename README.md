@@ -1,6 +1,6 @@
 Philosophers
 
-Implementação do problema dos filósofos comensais em C, utilizando semáforos para gerenciar a concorrência entre processos.
+Implementação do problema dos filósofos utilizando pthread_mutex_t para gerenciar a concorrência entre threads.
 
 📚 Sobre o Projeto
 
@@ -37,7 +37,7 @@ Este comando inicia a simulação com 5 filósofos, onde cada um tem 800ms para 
 
 Philosophers
 
-Implementation of the dining philosophers problem in C, using semaphores to manage concurrency between processes.
+Implementation of the dining philosophers problem in C, using mutex to manage concurrency between threads.
 
 📚 About the Project
 
